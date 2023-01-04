@@ -34,7 +34,6 @@ jobs:
       with:
         ruby-version: ${{ matrix.ruby }}
         bundler-cache: true
-      working-directory: getargv_ruby
     - name: Run the default task
       run: bundle exec rake
       working-directory: getargv_ruby
