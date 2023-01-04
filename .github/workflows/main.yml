@@ -2,26 +2,39 @@ name: Ruby
 
 on:
   push:
-    branches:
-      - main
-
+    branches: [ "main" ]
   pull_request:
+    branches: [ "main" ]
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     name: Ruby ${{ matrix.ruby }}
     strategy:
       matrix:
         ruby:
           - '3.2.0'
+          - '3.1.0'
+          - '3.0.0'
 
     steps:
     - uses: actions/checkout@v3
+      with:
+        repository: getargv/getargv
+        path: getargv
+        token: ${{ secrets.GH_PAT }}
+    - name: Build libgetargv
+      run: make install_dylib
+      working-directory: getargv
+    - uses: actions/checkout@v3
+      with:
+        path: getargv_ruby
     - name: Set up Ruby
       uses: ruby/setup-ruby@v1
       with:
         ruby-version: ${{ matrix.ruby }}
         bundler-cache: true
+      working-directory: getargv_ruby
     - name: Run the default task
       run: bundle exec rake
+      working-directory: getargv_ruby
