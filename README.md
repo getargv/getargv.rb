@@ -1,4 +1,6 @@
-# Getargv
+<h1><img src="logo.svg" width="200" alt="getargv"></h1>
+
+[![Ruby](https://github.com/getargv/getargv_ruby/actions/workflows/main.yml/badge.svg)](https://github.com/getargv/getargv_ruby/actions/workflows/main.yml)
 
 This gem allows you to query the arguments of other processes on macOS.
 
