@@ -33,17 +33,8 @@ jobs:
       uses: ruby/setup-ruby@v1
       with:
         ruby-version: ${{ matrix.ruby }}
+        bundler-cache: true
         working-directory: getargv_ruby
-    - name: Run bundle install
-      run: bundle install
-      working-directory: getargv_ruby
-    - uses: actions/upload-artifact@v3
-      if: success() || failure()
-      with:
-        name: gemfile.lock.${{ matrix.ruby }}
-        path: |
-          getargv_ruby/Gemfile
-          getargv_ruby/Gemfile.lock
     - name: Run the default task
       run: bundle exec rake
       working-directory: getargv_ruby
