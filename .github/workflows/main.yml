@@ -36,9 +36,8 @@ jobs:
         bundler-cache: true
         cache-version: 2
         working-directory: getargv_ruby
-    - name: Archive Test Results
+    - uses: actions/upload-artifact@v3
       if: success() || failure()
-      uses: actions/upload-artifact@v1
       with:
         name: gemfile.lock
         path: |
