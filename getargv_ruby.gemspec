@@ -16,7 +16,9 @@ Gem::Specification.new do |spec|
   an array or string. This gem only supports macOS because the KERN_PROCARGS2
   sysctl only exists in xnu kernels, BSD or Linux users should just read
   /proc/$PID/cmdline which is much easier and faster, Solaris users should use
-  pargs.
+  pargs. To limit the getargv gem to Apple OSs add it to your Gemfile like so:
+
+  gem "getargv", "~> #{Getargv::VERSION}", platforms: :ruby, install_if: RbConfig::CONFIG["host_os"].include?("darwin")
   EOF
   spec.homepage = "https://getargv.narzt.cam/"
   spec.license = "BSD-3-Clause"
