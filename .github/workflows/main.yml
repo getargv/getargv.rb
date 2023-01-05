@@ -36,6 +36,14 @@ jobs:
         bundler-cache: true
         cache-version: 2
         working-directory: getargv_ruby
+    - name: Archive Test Results
+      if: success() || failure()
+      uses: actions/upload-artifact@v1
+      with:
+        name: gemfile.lock
+        path: |
+          getargv_ruby/Gemfile
+          getargv_ruby/Gemfile.lock
     - name: Run the default task
       run: bundle exec rake
       working-directory: getargv_ruby
