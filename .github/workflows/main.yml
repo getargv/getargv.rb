@@ -34,12 +34,14 @@ jobs:
       with:
         ruby-version: ${{ matrix.ruby }}
         working-directory: getargv_ruby
+    - name: Run bundle install
+      run: bundle install
+      working-directory: getargv_ruby
     - uses: actions/upload-artifact@v3
       if: success() || failure()
       with:
         name: gemfile.lock.${{ matrix.ruby }}
         path: |
-          getargv_ruby/.bundle/config
           getargv_ruby/Gemfile
           getargv_ruby/Gemfile.lock
     - name: Run the default task
