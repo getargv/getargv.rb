@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    getargv (0.2.0-darwin)
+    getargv (0.2.0-universal-darwin)
 
 GEM
   remote: https://rubygems.org/

@@ -40,7 +40,7 @@ Gem::Specification.new do |spec|
   spec.executables = spec.files.grep(%r{\Aexe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib", "ext"]
   spec.extensions = ["ext/getargv_ruby/extconf.rb"]
-  spec.platform = 'darwin'
+  spec.platform = 'universal-darwin'
 
   spec.extra_rdoc_files = Dir["README.md", "ext/*/*.c", "lib/*/*.rb", "ext/*.c", "lib/*.rb"]
   spec.rdoc_options << "-o doc"
