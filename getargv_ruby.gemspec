@@ -51,6 +51,14 @@ Gem::Specification.new do |spec|
   # spec.rdoc_options << "-T" << "shtml"
   spec.rdoc_options << "--format=sdoc"
 
+  spec.add_development_dependency "rake", "~> 13.0"
+  spec.add_development_dependency "rake-compiler"
+  spec.add_development_dependency "minitest", "~> 5.0"
+  spec.add_development_dependency "minitest-macos-notification", "~> 1.0", ">= 1.0.1"
+  spec.add_development_dependency "standard", "~> 1.3"
+  spec.add_development_dependency "solargraph"
+  spec.add_development_dependency "sdoc"
+
   # Uncomment to register a new dependency of your gem
   # spec.add_dependency "example-gem", "~> 1.0"
 
