@@ -2,6 +2,8 @@
 
 require "test_helper"
 
+# https://ruby-doc.org/3.2.0/gems/minitest/Minitest/Assertions.html
+
 class TestGetargv < Minitest::Test
   def test_that_getargv_module_has_a_version_number
     refute_nil ::Getargv::VERSION

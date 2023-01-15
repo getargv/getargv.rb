@@ -1,4 +1,8 @@
+# See the writing guide of rbs: https://github.com/ruby/rbs#guides
 module Getargv
   VERSION: String
-  # See the writing guide of rbs: https://github.com/ruby/rbs#guides
+  public def get_argv_and_argc_of_pid: (Integer pid) -> Array[String]
+  alias get_argv_of_pid_as_array get_argv_and_argc_of_pid
+  public def get_argv_of_pid: (Integer pid, ?boolish nuls, ?Integer skip) -> String
+  alias get_argv_of_pid_as_string get_argv_of_pid
 end

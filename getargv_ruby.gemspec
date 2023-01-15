@@ -12,17 +12,21 @@ Gem::Specification.new do |spec|
 
   spec.summary = "This gem allows you to query the arguments of other processes on macOS."
   spec.description = <<-EOF
-  Getargv is a gem that allows you to query the arguments of other processes as
-  an array or string. This gem only supports macOS because the KERN_PROCARGS2
-  sysctl only exists in xnu kernels, BSD or Linux users should just read
-  /proc/$PID/cmdline which is much easier and faster, Solaris users should use
-  pargs. To limit the getargv gem to Apple OSs add it to your Gemfile like so:
+  Getargv is a gem that allows you to query the arguments of other processes as an array or string.
+
+  This gem only supports macOS because the KERN_PROCARGS2 sysctl only exists in xnu kernels, BSD or Linux users should just read /proc/$PID/cmdline which is much easier and faster, Solaris users should use pargs.
+
+  This gem requires you have [libgetargv](https://getargv.narzt.cam/) installed.
+
+  To limit the getargv gem to Apple OSs add it to your Gemfile like so:
 
   gem "getargv", "~> #{Getargv::VERSION}", platforms: :ruby, install_if: RbConfig::CONFIG["host_os"].include?("darwin")
   EOF
   spec.homepage = "https://getargv.narzt.cam/"
   spec.license = "BSD-3-Clause"
   spec.required_ruby_version = ">= #{ruby_version}.0"
+  spec.requirements << "macOS"
+  spec.requirements << "libgetargv installed"
 
   spec.metadata["homepage_uri"] = spec.homepage
   spec.metadata["source_code_uri"] = "https://github.com/getargv/getargv_ruby"
@@ -45,19 +49,20 @@ Gem::Specification.new do |spec|
   spec.platform = "universal-darwin"
 
   spec.extra_rdoc_files = Dir["README.md", "ext/*/*.c", "lib/*/*.rb", "lib/*.rb"]
-  spec.rdoc_options << "-o" << "doc"
-  spec.rdoc_options << "-T" << "rails"
-  # spec.rdoc_options << "-T" << "direct"
-  # spec.rdoc_options << "-T" << "shtml"
+  spec.rdoc_options << "--output" << "doc"
   spec.rdoc_options << "--format=sdoc"
+  spec.rdoc_options << "--template=rails"
+  spec.rdoc_options << '--line-numbers'
+  spec.rdoc_options << '--inline-source'
+  spec.rdoc_options << '--exclude=ext/*/extconf.rb'
 
   spec.add_development_dependency "rake", "~> 13.0"
   spec.add_development_dependency "rake-compiler"
   spec.add_development_dependency "minitest", "~> 5.0"
-  spec.add_development_dependency "minitest-macos-notification", "~> 1.0", ">= 1.0.1"
   spec.add_development_dependency "standard", "~> 1.3"
   spec.add_development_dependency "solargraph"
   spec.add_development_dependency "sdoc"
+  spec.add_development_dependency "rbs"
 
   # Uncomment to register a new dependency of your gem
   # spec.add_dependency "example-gem", "~> 1.0"

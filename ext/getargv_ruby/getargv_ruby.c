@@ -1,5 +1,7 @@
 #include "getargv_ruby.h"
 
+// https://ruby-doc.org/3.2.0/extension_rdoc.html
+
 VALUE rb_mGetargv;
 
 /*
