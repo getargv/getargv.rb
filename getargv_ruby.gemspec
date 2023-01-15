@@ -52,9 +52,9 @@ Gem::Specification.new do |spec|
   spec.rdoc_options << "--output" << "doc"
   spec.rdoc_options << "--format=sdoc"
   spec.rdoc_options << "--template=rails"
-  spec.rdoc_options << '--line-numbers'
-  spec.rdoc_options << '--inline-source'
-  spec.rdoc_options << '--exclude=ext/*/extconf.rb'
+  spec.rdoc_options << "--line-numbers"
+  spec.rdoc_options << "--inline-source"
+  spec.rdoc_options << "--exclude=ext/*/extconf.rb"
 
   spec.add_development_dependency "rake", "~> 13.0"
   spec.add_development_dependency "rake-compiler"
