@@ -49,7 +49,7 @@ static VALUE ruby_get_argv_of_pid(int argc, VALUE *argv, VALUE self) {
   // assemble result ruby string, this copies :(
   VALUE retVal = rb_str_new(result.start_pointer,
                             1 + result.end_pointer - result.start_pointer);
-  free(result.buffer); // ruby copied data, can free buffer now
+  free_ArgvResult(&result); // ruby copied data, can free buffer now
 
   return retVal;
 }
@@ -82,8 +82,7 @@ static VALUE ruby_get_argv_and_argc_of_pid(VALUE self, VALUE rPid) {
     rb_ary_push(ary, rb_str_new_cstr(result.argv[i]));
   }
   // ruby copied data, can free buffers now
-  free(result.argv);
-  free(result.buffer);
+  free_ArgvArgcResult(&result);
 
   return ary;
 }
