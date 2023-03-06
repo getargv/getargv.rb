@@ -2,7 +2,7 @@
 #define GETARGV_RUBY_H 1
 
 #include "ruby.h"
-#include "ruby/intern.h"
+#include "ruby/encoding.h"
 #include <libgetargv.h>
 #include <stddef.h>
 #include <sys/errno.h>

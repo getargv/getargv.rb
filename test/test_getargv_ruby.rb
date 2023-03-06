@@ -14,7 +14,7 @@ class TestGetargv < Minitest::Test
   end
 
   def test_get_argv_of_pid_does_something_useful
-    str = Getargv.get_argv_of_pid(Process.pid, false, 0)
+    str = Getargv.get_argv_of_pid(Process.pid, Encoding.default_external, false, 0)
     refute_nil str
     assert_match(/ruby/, str)
   end
@@ -23,8 +23,11 @@ class TestGetargv < Minitest::Test
     assert_raises(ArgumentError, "no args") do
       Getargv.get_argv_of_pid
     end
+    assert_raises(ArgumentError, "too few args") do
+      Getargv.get_argv_of_pid(1)
+    end
     assert_raises(ArgumentError, "too many args") do
-      Getargv.get_argv_of_pid(1, 2, 3, 4)
+      Getargv.get_argv_of_pid(1, 2, 3, 4, 5)
     end
   end
 
@@ -33,10 +36,19 @@ class TestGetargv < Minitest::Test
       Getargv.get_argv_of_pid(Process.pid, false, "a")
     end
     assert_raises(TypeError, "nil for pid") do
-      Getargv.get_argv_of_pid(nil)
+      Getargv.get_argv_of_pid(nil, Encoding.default_external)
     end
     assert_raises(TypeError, "string for pid") do
-      Getargv.get_argv_of_pid("a")
+      Getargv.get_argv_of_pid("a", Encoding.default_external)
+    end
+    assert_raises(TypeError, "nil for enc") do
+      Getargv.get_argv_of_pid(Process.pid, nil)
+    end
+    assert_raises(ArgumentError, "string for enc") do
+      Getargv.get_argv_of_pid(Process.pid, "nil")
+    end
+    assert_raises(TypeError, "number for enc") do
+      Getargv.get_argv_of_pid(Process.pid, 1)
     end
   end
 
@@ -45,7 +57,7 @@ class TestGetargv < Minitest::Test
   end
 
   def test_get_argv_and_argc_of_pid_does_something_useful
-    ary = Getargv.get_argv_and_argc_of_pid Process.pid
+    ary = Getargv.get_argv_and_argc_of_pid(Process.pid, Encoding.default_external)
     refute_nil ary
     refute_empty(ary)
     assert_match(/ruby/, ary.first)
@@ -55,17 +67,30 @@ class TestGetargv < Minitest::Test
     assert_raises(ArgumentError, "no args") do
       Getargv.get_argv_and_argc_of_pid
     end
+    assert_raises(ArgumentError, "too few args") do
+      Getargv.get_argv_and_argc_of_pid(1)
+    end
     assert_raises(ArgumentError, "too many args") do
-      Getargv.get_argv_and_argc_of_pid(1, 2)
+      Getargv.get_argv_and_argc_of_pid(1, 2, 3)
     end
   end
 
   def test_get_argv_and_argc_of_pid_does_type_checking
     assert_raises(TypeError, "nil for pid") do
-      Getargv.get_argv_and_argc_of_pid(nil)
+      Getargv.get_argv_and_argc_of_pid(nil, Encoding.default_external)
     end
     assert_raises(TypeError, "string for pid") do
-      Getargv.get_argv_and_argc_of_pid("a")
+      Getargv.get_argv_and_argc_of_pid("a", Encoding.default_external)
+    end
+
+    assert_raises(TypeError, "nil for enc") do
+      Getargv.get_argv_and_argc_of_pid(Process.pid, nil)
+    end
+    assert_raises(ArgumentError, "string for enc") do
+      Getargv.get_argv_and_argc_of_pid(Process.pid, "nil")
+    end
+    assert_raises(TypeError, "number for enc") do
+      Getargv.get_argv_and_argc_of_pid(Process.pid, 1)
     end
   end
 end
