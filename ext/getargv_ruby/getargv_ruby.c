@@ -5,7 +5,7 @@
 VALUE rb_mGetargv;
 
 /*
- *  call-seq:
+ * call-seq:
  *     Getargv.get_argv_of_pid(pid, enc)                       -> String
  *     Getargv.get_argv_of_pid_as_string(pid, enc)             -> String
  *     Getargv.get_argv_of_pid(pid, enc, nuls)                 -> String
@@ -13,20 +13,18 @@ VALUE rb_mGetargv;
  *     Getargv.get_argv_of_pid(pid, enc, nuls, skip)           -> String
  *     Getargv.get_argv_of_pid_as_string(pid, enc, nuls, skip) -> String
  *
- *  Returns the arguments for the given process id as a string with the
- * specified encoding. If the third arg is true: replace nul separators with
- * spaces for human consumption. If the fourth arg is provided, skip ahead the
+ * Returns the arguments for the given process id as a string with the
+ * specified encoding. If the third arg is +true+: replace +nul+ separators with
+ * +space+ for human consumption. If the fourth arg is provided, skip ahead the
  * returned string by the given number of leading arguments.
  *
- *  Getargv::get_argv_of_pid_as_string is an alias for Getargv::get_argv_of_pid.
+ * Getargv::get_argv_of_pid_as_string is an alias for Getargv::get_argv_of_pid.
  *
- *  Examples
+ * === Examples:
  *
- *    Getargv.get_argv_of_pid(Process.pid, Encoding.default_external) #=>
- * "ruby\x00-e..." Getargv.get_argv_of_pid(Process.pid,
- * Encoding.default_external, true)     #=> "ruby -e..."
- *    Getargv.get_argv_of_pid(Process.pid, Encoding.default_external, false, 1)
- * #=> "-e..."
+ *    Getargv.get_argv_of_pid(Process.pid, Encoding.default_external)           #=> "ruby\x00-e..."
+ *    Getargv.get_argv_of_pid(Process.pid, Encoding.default_external, true)     #=> "ruby -e..."
+ *    Getargv.get_argv_of_pid(Process.pid, Encoding.default_external, false, 1) #=> "-e..."
  */
 static VALUE ruby_get_argv_of_pid(int argc, VALUE *argv, VALUE self) {
   rb_check_arity(argc, 2, 4);
@@ -59,20 +57,17 @@ static VALUE ruby_get_argv_of_pid(int argc, VALUE *argv, VALUE self) {
 }
 
 /*
- *  call-seq:
- *     Getargv.get_argv_and_argc_of_pid(pid, enc)             -> [String]
- *     Getargv.get_argv_of_pid_as_array(pid, enc)             -> [String]
+ * call-seq:
+ *     Getargv.get_argv_and_argc_of_pid(pid, enc) -> [String]
+ *     Getargv.get_argv_of_pid_as_array(pid, enc) -> [String]
  *
- *  Returns the arguments for the given process id as an array of strings with
- * the specified encoding.
+ * Returns the arguments for the given process id as an array of strings with the specified encoding.
  *
- *  Getargv::get_argv_of_pid_as_array is an alias for
- * Getargv::get_argv_and_argc_of_pid.
+ * Getargv::get_argv_of_pid_as_array is an alias for Getargv::get_argv_and_argc_of_pid.
  *
- *  Examples
+ * === Examples:
  *
- *    Getargv.get_argv_and_argc_of_pid(Process.pid, Encoding.default_external)
- * #=> ["ruby,"-e",...]
+ *    Getargv.get_argv_and_argc_of_pid(Process.pid, Encoding.default_external) #=> ["ruby,"-e",...]
  */
 static VALUE ruby_get_argv_and_argc_of_pid(VALUE self, VALUE rPid, VALUE enc) {
   Check_Type(rPid, T_FIXNUM);
@@ -99,17 +94,13 @@ static VALUE ruby_get_argv_and_argc_of_pid(VALUE self, VALUE rPid, VALUE enc) {
 void Init_getargv_ruby(void) {
   rb_mGetargv = rb_define_module("Getargv");
 
-  rb_define_module_function(rb_mGetargv, "get_argv_of_pid",
-                            ruby_get_argv_of_pid, -1);
-  // Getargv::get_argv_of_pid_as_string is an alias for
-  // Getargv::get_argv_of_pid.
-  rb_define_alias(rb_singleton_class(rb_mGetargv), "get_argv_of_pid_as_string",
-                  "get_argv_of_pid");
+  rb_define_module_function(rb_mGetargv, "get_argv_of_pid", ruby_get_argv_of_pid, -1);
 
-  rb_define_module_function(rb_mGetargv, "get_argv_and_argc_of_pid",
-                            ruby_get_argv_and_argc_of_pid, 2);
-  // Getargv::get_argv_of_pid_as_array is an alias for
-  // Getargv::get_argv_and_argc_of_pid.
-  rb_define_alias(rb_singleton_class(rb_mGetargv), "get_argv_of_pid_as_array",
-                  "get_argv_and_argc_of_pid");
+  // Getargv::get_argv_of_pid_as_string is an alias for Getargv::get_argv_of_pid.
+  rb_define_alias(rb_singleton_class(rb_mGetargv), "get_argv_of_pid_as_string", "get_argv_of_pid");
+
+  rb_define_module_function(rb_mGetargv, "get_argv_and_argc_of_pid", ruby_get_argv_and_argc_of_pid, 2);
+
+  // Getargv::get_argv_of_pid_as_array is an alias for Getargv::get_argv_and_argc_of_pid.
+  rb_define_alias(rb_singleton_class(rb_mGetargv), "get_argv_of_pid_as_array", "get_argv_and_argc_of_pid");
 }
