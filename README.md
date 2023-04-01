@@ -1,6 +1,6 @@
 <h1><img src="logo.svg" width="200" alt="getargv"></h1>
 
-[![Ruby](https://github.com/getargv/getargv_ruby/actions/workflows/main.yml/badge.svg)](https://github.com/getargv/getargv_ruby/actions/workflows/main.yml)
+[![Ruby](https://github.com/getargv/getargv.rb/actions/workflows/main.yml/badge.svg)](https://github.com/getargv/getargv.rb/actions/workflows/main.yml)
 [![Gem Version](https://badge.fury.io/rb/getargv.svg)](https://badge.fury.io/rb/getargv)
 
 This gem allows you to query the arguments of other processes on macOS.
@@ -32,7 +32,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/getargv/getargv_ruby.
+Bug reports and pull requests are welcome on GitHub at https://github.com/getargv/getargv.rb.
 
 ## License
 
