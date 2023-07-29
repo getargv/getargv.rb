@@ -14,7 +14,7 @@ Gem::Specification.new do |spec|
   spec.description = <<-EOF
   Getargv is a gem that allows you to query the arguments of other processes as an array or string.
 
-  This gem only supports macOS because the KERN_PROCARGS2 sysctl only exists in xnu kernels, BSD or Linux users should just read /proc/\$PID/cmdline which is much easier and faster, Solaris users should use pargs.
+  This gem only supports macOS because the KERN_PROCARGS2 sysctl only exists in xnu kernels, BSD or Linux users should just read /proc/$PID/cmdline which is much easier and faster, Solaris users should use pargs.
 
   This gem requires you have [libgetargv](https://getargv.narzt.cam/) installed.
 
