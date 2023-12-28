@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-temporary_hack = "delete this line when https://github.com/testdouble/standard/pull/498 lands in a release" # rubocop:disable Lint/UselessAssignment
-
 def darwin_check
   require "pathname"
   src = $srcdir || __dir__ # standard:disable Style/GlobalVars
