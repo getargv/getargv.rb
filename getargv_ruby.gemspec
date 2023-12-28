@@ -56,10 +56,10 @@ Gem::Specification.new do |spec|
   spec.rdoc_options << "--inline-source"
   spec.rdoc_options << "--exclude=ext/*/extconf.rb"
 
-  spec.add_development_dependency "rake", "~> 13.0"
+  spec.add_development_dependency "rake", "~> 13.1"
   spec.add_development_dependency "rake-compiler"
-  spec.add_development_dependency "minitest", "~> 5.0"
-  spec.add_development_dependency "standard", "~> 1.3"
+  spec.add_development_dependency "minitest", "~> 5.20"
+  spec.add_development_dependency "standard", "~> 1.33"
   spec.add_development_dependency "solargraph"
   spec.add_development_dependency "sdoc"
   spec.add_development_dependency "rbs"
