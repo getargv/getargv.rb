@@ -48,6 +48,7 @@ jobs:
     needs: [test]
     permissions:
         contents: write
+        packages: write
     steps:
     - uses: actions/checkout@v4
       with:
@@ -66,6 +67,7 @@ jobs:
       uses: ruby/setup-ruby@v1
       with:
         ruby-version: ruby
+        bundler-cache: true
         working-directory: getargv_ruby
     - name: Bump version
     # tag done by release, commit done with checksum included
