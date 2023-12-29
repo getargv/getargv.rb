@@ -73,7 +73,8 @@ jobs:
     # tag done by release, commit done with checksum included
       env:
         BUNDLE_FROZEN: false
-      run: bundle exec rake bump:patch COMMIT=false TAG=false
+      run: bundle exec rake bump:patch COMMIT=false TAG=false | tail -1 | xargs -I {} echo "version={}" >> $GITHUB_OUTPUT
+      id: version
       working-directory: getargv_ruby
     - name: Run the build tasks
       run: bundle exec rake build build:checksum
