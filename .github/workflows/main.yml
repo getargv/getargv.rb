@@ -47,8 +47,9 @@ jobs:
     runs-on: macos-latest
     needs: [test]
     permissions:
-        contents: write
-        packages: write
+      id-token: write
+      contents: write
+      packages: write
     steps:
     - uses: actions/checkout@v4
       with:
@@ -90,6 +91,8 @@ jobs:
         git add -A
         git commit -am "commit checksum for ${{steps.version.outputs.version}}"
       working-directory: getargv_ruby
+    - name: Configure RubyGems Credentials
+      uses: rubygems/configure-rubygems-credentials@main
     - name: Release Gem to RubyGems
     # tags and pushes
       run: bundle exec rake release[origin]
