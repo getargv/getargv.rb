@@ -86,6 +86,7 @@ jobs:
         path: getargv_ruby/pkg/*.gem
     - name: Commit checksum and version bump
       run: git commit -am "commit checksum for ${{steps.version.outputs.version}}"
+      working-directory: getargv_ruby
     - name: Release Gem to RubyGems
     # tags and pushes
       run: bundle exec rake release[origin]
