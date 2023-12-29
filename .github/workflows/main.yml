@@ -93,6 +93,14 @@ jobs:
       working-directory: getargv_ruby
     - name: Configure RubyGems Credentials
       uses: rubygems/configure-rubygems-credentials@main
+    - name: Setup auth
+      run: |
+          mkdir -p $HOME/.gem
+          touch $HOME/.gem/credentials
+          chmod 0600 $HOME/.gem/credentials
+          printf -- "---\n:github: ${GEM_HOST_API_KEY}\n" > $HOME/.gem/credentials
+      env:
+          GEM_HOST_API_KEY: "Bearer ${{github.token}}"
     - name: Release Gem to RubyGems
     # tags and pushes
       run: bundle exec rake release[origin]
