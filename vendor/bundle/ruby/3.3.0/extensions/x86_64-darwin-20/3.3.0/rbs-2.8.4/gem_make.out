@@ -1,0 +1,28 @@
+current directory: /Users/runner/work/getargv.rb/getargv.rb/getargv_ruby/vendor/bundle/ruby/3.3.0/gems/rbs-2.8.4/ext/rbs_extension
+/Users/runner/hostedtoolcache/Ruby/3.3.0/x64/bin/ruby extconf.rb
+checking for whether -std=gnu99 is accepted as CFLAGS... yes
+creating Makefile
+
+current directory: /Users/runner/work/getargv.rb/getargv.rb/getargv_ruby/vendor/bundle/ruby/3.3.0/gems/rbs-2.8.4/ext/rbs_extension
+make DESTDIR\= sitearchdir\=./.gem.20231229-6278-c3dk3r sitelibdir\=./.gem.20231229-6278-c3dk3r clean
+
+current directory: /Users/runner/work/getargv.rb/getargv.rb/getargv_ruby/vendor/bundle/ruby/3.3.0/gems/rbs-2.8.4/ext/rbs_extension
+make DESTDIR\= sitearchdir\=./.gem.20231229-6278-c3dk3r sitelibdir\=./.gem.20231229-6278-c3dk3r
+compiling constants.c
+compiling lexer.c
+compiling lexstate.c
+compiling location.c
+compiling main.c
+compiling parser.c
+compiling parserstate.c
+compiling ruby_objs.c
+compiling unescape.c
+linking shared-object rbs_extension.bundle
+ld: warning: -undefined dynamic_lookup may not work with chained fixups
+
+current directory: /Users/runner/work/getargv.rb/getargv.rb/getargv_ruby/vendor/bundle/ruby/3.3.0/gems/rbs-2.8.4/ext/rbs_extension
+make DESTDIR\= sitearchdir\=./.gem.20231229-6278-c3dk3r sitelibdir\=./.gem.20231229-6278-c3dk3r install
+/usr/bin/install -c -m 0755 rbs_extension.bundle ./.gem.20231229-6278-c3dk3r
+
+current directory: /Users/runner/work/getargv.rb/getargv.rb/getargv_ruby/vendor/bundle/ruby/3.3.0/gems/rbs-2.8.4/ext/rbs_extension
+make DESTDIR\= sitearchdir\=./.gem.20231229-6278-c3dk3r sitelibdir\=./.gem.20231229-6278-c3dk3r clean
