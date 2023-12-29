@@ -7,7 +7,7 @@ on:
     branches: [ "main" ]
 
 jobs:
-  build:
+  test:
     runs-on: macos-latest
     name: Ruby ${{ matrix.ruby }}
     strategy:
@@ -41,4 +41,50 @@ jobs:
       working-directory: getargv_ruby
     - name: Run the default task
       run: bundle exec rake
+      working-directory: getargv_ruby
+
+  release:
+    runs-on: macos-latest
+    needs: [test]
+    permissions:
+        contents: write
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        repository: getargv/getargv
+        path: getargv
+        token: ${{ secrets.GH_PAT }}
+    - name: Build libgetargv
+      run: make install_dylib
+      working-directory: getargv
+    - uses: actions/checkout@v4
+    # deliberately do NOT trigger workflow on push to main
+      with:
+        path: getargv_ruby
+        token: ${{ github.token }}
+    - name: Set up Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: ruby
+        working-directory: getargv_ruby
+    - name: Bump version
+    # tag done by release, commit done with checksum included
+      run: bundle exec rake bump:patch COMMIT=false TAG=false
+      working-directory: getargv_ruby
+    - name: Run the build tasks
+      run: bundle exec rake build build:checksum
+      working-directory: getargv_ruby
+    - name: Archive Gem
+      uses: actions/upload-artifact@v3
+      with:
+        name: gem
+        path: getargv_ruby/pkg/*.gem
+    - name: Commit checksum and version bump
+      run: git commit -am "commit checksum for ${{steps.version.outputs.version}}"
+    - name: Release Gem to RubyGems
+    # tags and pushes
+      run: bundle exec rake release[origin]
+      working-directory: getargv_ruby
+    - name: Release Gem to GitHub Packages
+      run: gem push --key github --host https://rubygems.pkg.github.com/getargv pkg/*.gem
       working-directory: getargv_ruby
