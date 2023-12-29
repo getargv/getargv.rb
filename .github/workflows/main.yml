@@ -71,6 +71,8 @@ jobs:
         working-directory: getargv_ruby
     - name: Bump version
     # tag done by release, commit done with checksum included
+      env:
+        BUNDLE_FROZEN: false
       run: bundle exec rake bump:patch COMMIT=false TAG=false
       working-directory: getargv_ruby
     - name: Run the build tasks
