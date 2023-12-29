@@ -1,7 +1,12 @@
 # frozen_string_literal: true
 
+require "bump/tasks"
 require "bundler/gem_tasks"
+require "rake/extensiontask"
 require "rake/testtask"
+require "rdoc/task"
+require "sdoc"
+require "standard/rake"
 
 Rake::TestTask.new(:test) do |t|
   t.libs << "test"
@@ -9,20 +14,12 @@ Rake::TestTask.new(:test) do |t|
   t.test_files = FileList["test/**/test_*.rb"]
 end
 
-require "standard/rake"
-
-require "rake/extensiontask"
-
+task default: %i[clobber compile test standard]
 task build: :compile
 
 Rake::ExtensionTask.new("getargv_ruby") do |ext|
   ext.lib_dir = "lib/getargv_ruby"
 end
-
-task default: %i[clobber compile test standard]
-
-require "sdoc"
-require "rdoc/task"
 
 RDoc::Task.new do |rdoc|
   rdoc.main = "README.md"
