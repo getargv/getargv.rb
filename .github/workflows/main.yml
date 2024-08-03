@@ -17,6 +17,7 @@ jobs:
           - '3.2' # EOL: 2026-03-31
           - '3.3' # EOL: 2027-03-31
          # see supported ruby release schedule at https://www.ruby-lang.org/en/downloads/branches/
+          - 'system'
     steps:
     - uses: actions/checkout@v4
       with:
@@ -34,10 +35,14 @@ jobs:
         path: getargv_ruby
     - name: Set up Ruby ${{ matrix.ruby }}
       uses: ruby/setup-ruby@v1
+      if: ${{ matrix.ruby != 'system' }}
       with:
         ruby-version: ${{ matrix.ruby }}
         bundler-cache: true
         working-directory: getargv_ruby
+    - name: Set up Ruby ${{ matrix.ruby }}
+      run: echo "PATH=/usr/bin:$PATH" >> $GITHUB_ENV
+      if: ${{ matrix.ruby == 'system' }}
     - name: Create .ruby-version file
       run: ruby -e 'puts RUBY_VERSION' > .ruby-version
       working-directory: getargv_ruby
