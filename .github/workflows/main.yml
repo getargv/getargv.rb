@@ -45,6 +45,7 @@ jobs:
         echo "PATH=/usr/bin:$PATH" >> $GITHUB_ENV
         gem install bundler -v `bundle env | grep -A1 BUNDLED | tr -d ' ' | grep -v 'BUNDLED'`
         bundle install
+      working-directory: getargv_ruby
       if: ${{ matrix.ruby == 'system' }}
     - name: Create .ruby-version file
       run: ruby -e 'puts RUBY_VERSION' > .ruby-version
