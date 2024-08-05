@@ -44,6 +44,7 @@ jobs:
       run: |
         echo "PATH=/usr/bin:$HOME/.bundle/bin:`/usr/bin/gem environment | awk '/USER INSTALLATION DIRECTORY/{print $NF}'`/bin:$PATH" >> $GITHUB_ENV
         /usr/bin/bundle config set --global path "$HOME/.bundle"
+        /usr/bin/bundle config set --global cache_path "$HOME/.bundle/cache"
       if: ${{ matrix.ruby == 'system' }}
     - name: Set up Ruby ${{ matrix.ruby }} pt 2
       run: |
