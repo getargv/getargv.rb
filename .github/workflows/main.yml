@@ -41,13 +41,15 @@ jobs:
         bundler-cache: true
         working-directory: getargv_ruby
     - name: Set up Ruby ${{ matrix.ruby }} pt 1
-      run: echo "PATH=/usr/bin:$PATH" >> $GITHUB_ENV
+      run: |
+        echo "PATH=/usr/bin:$PATH" >> $GITHUB_ENV
+        /usr/bin/bundle config set --global path "$HOME/.bundle"
       if: ${{ matrix.ruby == 'system' }}
     - name: Set up Ruby ${{ matrix.ruby }} pt 2
       run: |
         gem install bundler -v '~>2.4'
-        bundle install
         bundle info bundler
+        bundle install
       working-directory: getargv_ruby
       if: ${{ matrix.ruby == 'system' }}
     - name: Create .ruby-version file
