@@ -43,9 +43,9 @@ jobs:
     - name: Set up Ruby ${{ matrix.ruby }}
       run: |
         echo "PATH=/usr/bin:$PATH" >> $GITHUB_ENV
-        gem install bundler -v `bundle env | grep -A1 BUNDLED | tr -d ' ' | grep -v 'BUNDLED'`
-        bundle install
-        bundle info bundler
+        /usr/bin/gem install bundler -v `/usr/bin/bundle env | grep -A1 BUNDLED | tr -d ' ' | grep -v 'BUNDLED'`
+        /usr/bin/bundle install
+        /usr/bin/bundle info bundler
       working-directory: getargv_ruby
       if: ${{ matrix.ruby == 'system' }}
     - name: Create .ruby-version file
