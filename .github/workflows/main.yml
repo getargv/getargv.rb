@@ -45,8 +45,7 @@ jobs:
       if: ${{ matrix.ruby == 'system' }}
     - name: Set up Ruby ${{ matrix.ruby }} pt 2
       run: |
-        gem install bundler
-        gem install bundler -v `bundle env | grep -A1 BUNDLED | tr -d ' ' | grep -v 'BUNDLED'`
+        gem install bundler -v '~>2.4'
         bundle install
         bundle info bundler
       working-directory: getargv_ruby
