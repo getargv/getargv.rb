@@ -47,9 +47,10 @@ jobs:
       if: ${{ matrix.ruby == 'system' }}
     - name: Set up Ruby ${{ matrix.ruby }} pt 2
       run: |
-        gem install bundler -v '~>2.4'
-        bundle info bundler
+        gem install bundler -v '~>2.4' --install-dir "$HOME/.bundle"
+        ls -R "$HOME/.bundle"
         bundle install
+        ls -R "$HOME/.bundle"
       working-directory: getargv_ruby
       if: ${{ matrix.ruby == 'system' }}
     - name: Create .ruby-version file
