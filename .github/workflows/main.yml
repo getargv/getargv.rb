@@ -13,9 +13,9 @@ jobs:
     strategy:
       matrix:
         ruby:
-          # - '3.1' # EOL: 2025-03-31
-          # - '3.2' # EOL: 2026-03-31
-          # - '3.3' # EOL: 2027-03-31
+          - '3.1' # EOL: 2025-03-31
+          - '3.2' # EOL: 2026-03-31
+          - '3.3' # EOL: 2027-03-31
           # see supported ruby release schedule at https://www.ruby-lang.org/en/downloads/branches/
           - 'system'
     steps:
@@ -55,7 +55,7 @@ jobs:
       run: ruby -e 'puts RUBY_VERSION' > .ruby-version
       working-directory: getargv_ruby
     - name: Run the default task
-      run: bundle exec rake && false
+      run: bundle exec rake
       working-directory: getargv_ruby
 
   release:
