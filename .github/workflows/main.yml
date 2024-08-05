@@ -40,11 +40,13 @@ jobs:
         ruby-version: ${{ matrix.ruby }}
         bundler-cache: true
         working-directory: getargv_ruby
-    - name: Set up Ruby ${{ matrix.ruby }}
+    - name: Set up Ruby ${{ matrix.ruby }} pt 1
       run: |
-        export "PATH=/usr/bin:$PATH"
-        echo "PATH=$PATH" >> $GITHUB_ENV
-        bundle update --bundler
+        echo "PATH=/usr/bin:$PATH" >> $GITHUB_ENV
+        /usr/bin/bundle update --bundler
+      if: ${{ matrix.ruby == 'system' }}
+    - name: Set up Ruby ${{ matrix.ruby }} pt 2
+      run: |
         gem install bundler -v `bundle env | grep -A1 BUNDLED | tr -d ' ' | grep -v 'BUNDLED'`
         bundle install
         bundle info bundler
@@ -54,7 +56,7 @@ jobs:
       run: ruby -e 'puts RUBY_VERSION' > .ruby-version
       working-directory: getargv_ruby
     - name: Run the default task
-      run: bundle exec rake
+      run: bundle exec rake && false
       working-directory: getargv_ruby
 
   release:
