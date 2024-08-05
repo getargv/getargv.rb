@@ -41,12 +41,11 @@ jobs:
         bundler-cache: true
         working-directory: getargv_ruby
     - name: Set up Ruby ${{ matrix.ruby }} pt 1
-      run: |
-        echo "PATH=/usr/bin:$PATH" >> $GITHUB_ENV
-        /usr/bin/bundle update --bundler
+      run: echo "PATH=/usr/bin:$PATH" >> $GITHUB_ENV
       if: ${{ matrix.ruby == 'system' }}
     - name: Set up Ruby ${{ matrix.ruby }} pt 2
       run: |
+        gem install bundler
         gem install bundler -v `bundle env | grep -A1 BUNDLED | tr -d ' ' | grep -v 'BUNDLED'`
         bundle install
         bundle info bundler
