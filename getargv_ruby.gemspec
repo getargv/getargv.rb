@@ -56,14 +56,14 @@ Gem::Specification.new do |spec|
   spec.rdoc_options << "--inline-source"
   spec.rdoc_options << "--exclude=ext/*/extconf.rb"
 
-  spec.add_development_dependency "bump", "~> 0.10"
-  spec.add_development_dependency "minitest", "~> 5.20"
-  spec.add_development_dependency "rake", "~> 13.1"
+  spec.add_development_dependency "bump"
+  spec.add_development_dependency "minitest"
+  spec.add_development_dependency "rake"
   spec.add_development_dependency "rake-compiler"
   spec.add_development_dependency "rbs"
   spec.add_development_dependency "sdoc"
   spec.add_development_dependency "solargraph"
-  spec.add_development_dependency "standard", "~> 1.33"
+  spec.add_development_dependency "standard"
 
   # Uncomment to register a new dependency of your gem
   # spec.add_dependency "example-gem", "~> 1.0"

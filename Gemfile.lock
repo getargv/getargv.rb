@@ -111,15 +111,15 @@ PLATFORMS
   x86_64-darwin-23
 
 DEPENDENCIES
-  bump (~> 0.10)
+  bump
   getargv!
-  minitest (~> 5.20)
-  rake (~> 13.1)
+  minitest
+  rake
   rake-compiler
   rbs
   sdoc
   solargraph
-  standard (~> 1.33)
+  standard
 
 BUNDLED WITH
    2.5.9
