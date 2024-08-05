@@ -1,8 +1,10 @@
 # frozen_string_literal: true
 
+require "mkmf"
+
 def darwin_check
   require "pathname"
-  src = $srcdir || __dir__ # standard:disable Style/GlobalVars
+  src = cc_config['srcdir'] || __dir__ # standard:disable Style/GlobalVars
   require_relative Pathname.new("#{src}/../../lib/getargv_ruby/version.rb").realpath.to_s
   abort <<EOF unless RUBY_PLATFORM.include?("darwin")
 
@@ -19,8 +21,6 @@ arch_dir = RbConfig::CONFIG["rubyarchhdrdir"]
 unless File.exist?(arch_dir)
   arch_dir.sub!(RUBY_PLATFORM.split("-").last, Dir.entries(File.dirname(arch_dir)).reject { |d| d.start_with?(".", "ruby") }.first.split("-").last)
 end
-
-require "mkmf"
 
 unless have_library("getargv", "get_argv_of_pid", "libgetargv.h")
   abort "libgetargv is missing, please install libgetargv."

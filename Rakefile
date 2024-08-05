@@ -44,6 +44,8 @@ namespace :dev do
   CLOBBER << compilation_db_path
 end
 
-CLEAN.concat ["ext/getargv_ruby/.cache",
-  "getargv_ruby.o",
-  "mkmf.log"]
+CLEAN.concat [
+               "ext/getargv_ruby/.cache",
+               "getargv_ruby.o",
+               "mkmf.log",
+             ]
