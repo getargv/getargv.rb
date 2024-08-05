@@ -3,5 +3,5 @@
 module Getargv
   ##
   # The version of the gem
-  VERSION = "0.3.6"
+  VERSION = "0.3.7"
 end
