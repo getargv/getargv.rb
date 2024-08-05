@@ -42,13 +42,13 @@ jobs:
         working-directory: getargv_ruby
     - name: Set up Ruby ${{ matrix.ruby }} pt 1
       run: |
-        echo "PATH=/usr/bin:$PATH" >> $GITHUB_ENV
+        echo "PATH=/usr/bin:$HOME/.bundle/bin:$PATH" >> $GITHUB_ENV
         /usr/bin/bundle config set --global path "$HOME/.bundle"
       if: ${{ matrix.ruby == 'system' }}
     - name: Set up Ruby ${{ matrix.ruby }} pt 2
       run: |
-        gem install bundler -v '~>2.4.0' --install-dir "$HOME/.bundle"
-        ls -R "$HOME/.bundle"
+        gem install bundler -v '~>2.4.0' --user-install --no-document
+        bundle env
         bundle install
         ls -R "$HOME/.bundle"
       working-directory: getargv_ruby
