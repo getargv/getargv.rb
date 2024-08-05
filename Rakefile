@@ -47,5 +47,5 @@ end
 CLEAN.concat [
   "ext/getargv_ruby/.cache",
   "getargv_ruby.o",
-  "mkmf.log"
+  "mkmf.log", # standard:disable Style/TrailingCommaInArrayLiteral
 ]
