@@ -4,7 +4,7 @@ require "mkmf"
 
 def darwin_check
   require "pathname"
-  src = cc_config['srcdir'] || __dir__ # standard:disable Style/GlobalVars
+  src = RbConfig::CONFIG["srcdir"] || __dir__
   require_relative Pathname.new("#{src}/../../lib/getargv_ruby/version.rb").realpath.to_s
   abort <<EOF unless RUBY_PLATFORM.include?("darwin")
 

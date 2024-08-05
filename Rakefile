@@ -45,7 +45,7 @@ namespace :dev do
 end
 
 CLEAN.concat [
-               "ext/getargv_ruby/.cache",
-               "getargv_ruby.o",
-               "mkmf.log",
-             ]
+  "ext/getargv_ruby/.cache",
+  "getargv_ruby.o",
+  "mkmf.log"
+]
