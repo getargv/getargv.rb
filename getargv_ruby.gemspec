@@ -62,7 +62,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rake-compiler"
   spec.add_development_dependency "rbs"
   spec.add_development_dependency "sdoc"
-  spec.add_development_dependency "solargraph"
+  spec.add_development_dependency "ruby-lsp"
   spec.add_development_dependency "standard"
 
   # Uncomment to register a new dependency of your gem
