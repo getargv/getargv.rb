@@ -13,10 +13,10 @@ jobs:
     strategy:
       matrix:
         ruby:
-          - '3.1' # EOL: 2025-03-31
           - '3.2' # EOL: 2026-03-31
           - '3.3' # EOL: 2027-03-31
           - '3.4' # EOL: 2028-03-31
+          # - '3.5' # REL: 2026-12-25 # EOL: 2029-03-31
           # see supported ruby release schedule at https://www.ruby-lang.org/en/downloads/branches/
           - 'system'
     steps:
