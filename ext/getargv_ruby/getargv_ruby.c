@@ -2,7 +2,7 @@
 
 // https://ruby-doc.org/3.2.0/extension_rdoc.html
 
-VALUE rb_mGetargv;
+static VALUE rb_mGetargv;
 
 /*
  * call-seq:
@@ -26,7 +26,7 @@ VALUE rb_mGetargv;
  *    Getargv.get_argv_of_pid(Process.pid, Encoding.default_external, true)     #=> "ruby -e..."
  *    Getargv.get_argv_of_pid(Process.pid, Encoding.default_external, false, 1) #=> "-e..."
  */
-static VALUE ruby_get_argv_of_pid(int argc, VALUE *argv, VALUE self) {
+static VALUE ruby_get_argv_of_pid(int argc, const VALUE *argv, VALUE self) {
   rb_check_arity(argc, 2, 4);
   Check_Type(argv[0], T_FIXNUM);
   rb_pid_t pid = NUM2PIDT(argv[0]);
