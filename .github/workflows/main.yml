@@ -20,7 +20,7 @@ jobs:
           # see supported ruby release schedule at https://www.ruby-lang.org/en/downloads/branches/
           - 'system'
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v5
       with:
         repository: getargv/getargv
         path: getargv
@@ -31,7 +31,7 @@ jobs:
     - name: Install libgetargv
       run: sudo make install_dylib
       working-directory: getargv
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v5
       with:
         path: getargv_ruby
     - name: Set up Ruby ${{ matrix.ruby }}
@@ -67,7 +67,7 @@ jobs:
       contents: write
       packages: write
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v5
       with:
         repository: getargv/getargv
         path: getargv
@@ -78,7 +78,7 @@ jobs:
     - name: Install libgetargv
       run: sudo make install_dylib
       working-directory: getargv
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v5
     # deliberately do NOT trigger workflow on push to main
       with:
         path: getargv_ruby
