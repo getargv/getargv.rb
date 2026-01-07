@@ -16,11 +16,11 @@ jobs:
           - '3.2' # EOL: 2026-03-31
           - '3.3' # EOL: 2027-03-31
           - '3.4' # EOL: 2028-03-31
-          # - '3.5' # REL: 2026-12-25 # EOL: 2029-03-31
+          - '4.0' # EOL: 2029-03-31
           # see supported ruby release schedule at https://www.ruby-lang.org/en/downloads/branches/
           - 'system'
     steps:
-    - uses: actions/checkout@v5
+    - uses: actions/checkout@v6
       with:
         repository: getargv/getargv
         path: getargv
@@ -31,7 +31,7 @@ jobs:
     - name: Install libgetargv
       run: sudo make install_dylib
       working-directory: getargv
-    - uses: actions/checkout@v5
+    - uses: actions/checkout@v6
       with:
         path: getargv_ruby
     - name: Set up Ruby ${{ matrix.ruby }}
@@ -67,7 +67,7 @@ jobs:
       contents: write
       packages: write
     steps:
-    - uses: actions/checkout@v5
+    - uses: actions/checkout@v6
       with:
         repository: getargv/getargv
         path: getargv
@@ -78,7 +78,7 @@ jobs:
     - name: Install libgetargv
       run: sudo make install_dylib
       working-directory: getargv
-    - uses: actions/checkout@v5
+    - uses: actions/checkout@v6
     # deliberately do NOT trigger workflow on push to main
       with:
         path: getargv_ruby
@@ -100,7 +100,7 @@ jobs:
       run: bundle exec rake build build:checksum
       working-directory: getargv_ruby
     - name: Archive Gem
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v5
       with:
         name: gem
         path: getargv_ruby/pkg/*.gem
