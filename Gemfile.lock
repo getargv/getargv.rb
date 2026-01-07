@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    getargv (0.3.11-universal-darwin)
+    getargv (0.3.12-universal-darwin)
 
 GEM
   remote: https://rubygems.org/
@@ -107,4 +107,4 @@ DEPENDENCIES
   standard
 
 BUNDLED WITH
-  2.4.22
+   2.4.22
