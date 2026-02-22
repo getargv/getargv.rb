@@ -48,14 +48,10 @@ jobs:
       if: ${{ matrix.ruby == 'system' }}
     - name: Set up Ruby ${{ matrix.ruby }} pt 2
       run: |
-        gem update --system 3.2.3
         gem install bundler -v '~>2.4.0' --user-install --no-document
         bundle install
       working-directory: getargv_ruby
       if: ${{ matrix.ruby == 'system' }}
-    - name: Set up Ruby ${{ matrix.ruby }} pt 3
-      run: gem cleanup stringio
-      working-directory: getargv_ruby
     - name: Create .ruby-version file
       run: ruby -e 'puts RUBY_VERSION' > .ruby-version
       working-directory: getargv_ruby
