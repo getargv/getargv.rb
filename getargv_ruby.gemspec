@@ -11,16 +11,17 @@ Gem::Specification.new do |spec|
   spec.email = ["getargv@narzt.cam"]
 
   spec.summary = "This gem allows you to query the arguments of other processes on macOS."
-  spec.description = <<-EOF
+  spec.description = <<~EOF
+  == Getargv
   Getargv is a gem that allows you to query the arguments of other processes as an array or string.
 
-  This gem only supports macOS because the KERN_PROCARGS2 sysctl only exists in xnu kernels, BSD or Linux users should just read /proc/$PID/cmdline which is much easier and faster, Solaris users should use pargs.
+  This gem only supports macOS because the +KERN_PROCARGS2+ sysctl only exists in xnu kernels, BSD or Linux users should just read <code>/proc/$PID/cmdline</code> which is much easier and faster, Solaris users should use pargs.
 
-  This gem requires you have [libgetargv](https://getargv.narzt.cam/) installed.
+  This gem requires you have {libgetargv}[https://getargv.narzt.cam/] installed.
 
   To limit the getargv gem to Apple OSs add it to your Gemfile like so:
 
-  gem "getargv", "~> #{Getargv::VERSION}", platforms: :ruby, install_if: RbConfig::CONFIG["host_os"].include?("darwin")
+    gem "getargv", "~> #{Getargv::VERSION}", platforms: :ruby, install_if: RbConfig::CONFIG["host_os"].include?("darwin")
   EOF
   spec.homepage = "https://getargv.narzt.cam/"
   spec.license = "BSD-3-Clause"
