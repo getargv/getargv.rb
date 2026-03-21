@@ -107,8 +107,13 @@ jobs:
       run: |
         echo "## [${{steps.version.outputs.version}}] - $(date '+%Y-%m-%d')" > newchangelog
         echo >> newchangelog
-        git log --grep="commit checksum" --invert-grep --pretty=format:'- %s' v${{steps.old-version.outputs.version}}..HEAD -- . ':!.github' ':!Gemfile.lock' >> newchangelog
-        echo >> newchangelog
+        common_flags=(--grep="commit checksum" --invert-grep "v${{steps.old-version.outputs.version}}..HEAD" -- . ':!.github' ':!Gemfile.lock')
+        if [ "$(git rev-list --count "${common_flags[@]}")" -lt 1 ]; then
+          echo '- No code changes, CI automation improvements.' >> newchangelog
+        else
+          git log --pretty=format:'- %s' "${common_flags[@]}" >> newchangelog
+          echo >> newchangelog
+        fi
         echo >> newchangelog
         cat CHANGELOG.md >> newchangelog
         mv newchangelog CHANGELOG.md
