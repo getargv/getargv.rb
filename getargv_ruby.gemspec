@@ -31,7 +31,7 @@ Gem::Specification.new do |spec|
 
   spec.metadata["homepage_uri"] = spec.homepage
   spec.metadata["source_code_uri"] = "https://github.com/getargv/getargv.rb"
-  spec.metadata["changelog_uri"] = "https://github.com/getargv/getargv.rb/blob/CHANGELOG.md"
+  spec.metadata["changelog_uri"] = "https://github.com/getargv/getargv.rb/blob/v#{Getargv::VERSION}/CHANGELOG.md"
   spec.metadata["bug_tracker_uri"] = "https://github.com/getargv/getargv.rb/issues"
   spec.metadata["funding_uri"] = "https://github.com/sponsors/CamJN"
   spec.metadata["documentation_uri"] = "https://rubydoc.info/gems/getargv/Getargv"
