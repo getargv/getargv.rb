@@ -92,7 +92,7 @@ jobs:
       run: bundle install --path ./vendor/bundle
       working-directory: getargv_ruby
     - name: Record old version
-      run: grep -Fe 'VERSION' lib/getargv_ruby/version.rb | tr -d ' ' | tr '[:upper:]' '[:lower:]' >> $GITHUB_OUTPUT
+      run: grep -Fe 'VERSION' lib/getargv_ruby/version.rb | tr -d ' "' | tr '[:upper:]' '[:lower:]' >> $GITHUB_OUTPUT
       id: old-version
       working-directory: getargv_ruby
     - name: Bump version
@@ -102,13 +102,13 @@ jobs:
       working-directory: getargv_ruby
     - name: update changelog
       run: |
-        - echo "## [${{steps.version.outputs.version}}] - $(date '+%Y-%m-%d')" > newchangelog
-        - echo >> newchangelog
-        - git log --grep="commit checksum" --invert-grep --pretty=format:'- %s' v${{steps.old-version.outputs.version}}..HEAD -- . ':!.github' ':!Gemfile.lock' >> newchangelog
-        - echo >> newchangelog
-        - echo >> newchangelog
-        - cat CHANGELOG.md >> newchangelog
-        - mv newchangelog CHANGELOG.md
+        echo "## [${{steps.version.outputs.version}}] - $(date '+%Y-%m-%d')" > newchangelog
+        echo >> newchangelog
+        git log --grep="commit checksum" --invert-grep --pretty=format:'- %s' v${{steps.old-version.outputs.version}}..HEAD -- . ':!.github' ':!Gemfile.lock' >> newchangelog
+        echo >> newchangelog
+        echo >> newchangelog
+        cat CHANGELOG.md >> newchangelog
+        mv newchangelog CHANGELOG.md
       working-directory: getargv_ruby
     - name: Run the build tasks
       run: bundle exec rake build build:checksum
