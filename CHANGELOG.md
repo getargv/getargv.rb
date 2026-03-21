@@ -1,6 +1,6 @@
 ## [0.3.17] - 2026-03-21
 
-- make tags available in git checkout
+- Try to automate changelog
 
 ## [0.3.16] - 2026-03-21
 
