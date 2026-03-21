@@ -82,6 +82,7 @@ jobs:
     # deliberately do NOT trigger workflow on push to main
       with:
         path: getargv_ruby
+        fetch-tags: true
         token: ${{ github.token }}
     - name: Set up Ruby
       uses: ruby/setup-ruby@v1
