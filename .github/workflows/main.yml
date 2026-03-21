@@ -91,10 +91,24 @@ jobs:
     - name: Bundle install (no deployment/frozen)
       run: bundle install --path ./vendor/bundle
       working-directory: getargv_ruby
+    - name: Record old version
+      run: grep -Fe 'VERSION' lib/getargv_ruby/version.rb | tr -d ' ' | tr '[:upper:]' '[:lower:]' >> $GITHUB_OUTPUT
+      id: old-version
+      working-directory: getargv_ruby
     - name: Bump version
     # tag done by release, commit done with checksum included
       run: bundle exec rake bump:patch COMMIT=false TAG=false | tail -1 | xargs -I {} echo "version={}" >> $GITHUB_OUTPUT
       id: version
+      working-directory: getargv_ruby
+    - name: update changelog
+      run: |
+        - echo "## [${{steps.version.outputs.version}}] - $(date '+%Y-%m-%d')" > newchangelog
+        - echo >> newchangelog
+        - git log --grep="commit checksum" --invert-grep --pretty=format:'- %s' v${{steps.old-version.outputs.version}}..HEAD -- . ':!.github' ':!Gemfile.lock' >> newchangelog
+        - echo >> newchangelog
+        - echo >> newchangelog
+        - cat CHANGELOG.md >> newchangelog
+        - mv newchangelog CHANGELOG.md
       working-directory: getargv_ruby
     - name: Run the build tasks
       run: bundle exec rake build build:checksum
@@ -108,7 +122,7 @@ jobs:
     # add and commit separately because `git commit -am` excludes new files =(
       run: |
         git add -A
-        git commit -am "commit checksum for ${{steps.version.outputs.version}}"
+        git commit -am "commit checksum, changelog, and version bump for ${{steps.version.outputs.version}}"
       working-directory: getargv_ruby
     - name: Setup auth
       run: |

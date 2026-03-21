@@ -16,3 +16,4 @@ Makefile
 .cache
 compile_commands.json
 .ruby-version
+/newchangelog

@@ -1,3 +1,8 @@
+## [0.3.16] - 2026-03-21
+
+- Update changelog
+- Fix changelog url
+
 ## [0.3.15] - 2026-03-20
 
 - Improve gem description
