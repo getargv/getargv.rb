@@ -80,9 +80,11 @@ jobs:
       working-directory: getargv
     - uses: actions/checkout@v6
     # deliberately do NOT trigger workflow on push to main
+    # fetch tags and commits for changelog generation
       with:
         path: getargv_ruby
         fetch-tags: true
+        fetch-depth: 0
         token: ${{ github.token }}
     - name: Set up Ruby
       uses: ruby/setup-ruby@v1
