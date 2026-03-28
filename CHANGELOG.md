@@ -1,3 +1,7 @@
+## [0.3.18] - 2026-03-28
+
+- Fix changelog
+
 ## [0.3.17] - 2026-03-21
 
 - Try to automate changelog
