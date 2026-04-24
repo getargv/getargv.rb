@@ -1,3 +1,7 @@
+## [0.3.19] - 2026-04-24
+
+- No code changes, CI automation improvements.
+
 ## [0.3.18] - 2026-03-28
 
 - Fix changelog
