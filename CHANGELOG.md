@@ -1,3 +1,7 @@
+## [0.3.21] - 2026-08-12
+
+- No code changes, CI automation improvements.
+
 ## [0.3.20] - 2026-07-24
 
 - No code changes, CI automation improvements.
